@@ -3,7 +3,7 @@ import os
 
 #1. Force Python to look in your current folder for code 
 
-sys.path.insert(0, os.path.dirname(file)) 
+sys.path.insert(0, os.path.dirname(__file__)) 
 
 #2. Point to your virtual environment packages so it can find FastAPI 
 

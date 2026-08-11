@@ -20,7 +20,7 @@ http://127.0.0.1:8000/api/v1/convert-hex
 
 ## 2.0 Versions
 
-### 0.01 
+### 0.01 Various teething issues as below
 
 ![Teething issues](./screenshots/SyntaxError.jpg)
 
