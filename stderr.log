@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "/home/systema1/privateapps.systematicdefence.tech/server/passenger_wsgi.py", line 22, in <module>
+    from a2wsgi import ASGIToWSGI
+ImportError: cannot import name 'ASGIToWSGI' from 'a2wsgi' (/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/lib/python3.10/site-packages/a2wsgi/__init__.py)
+Traceback (most recent call last):
+  File "/home/systema1/privateapps.systematicdefence.tech/server/passenger_wsgi.py", line 22, in <module>
+    from a2wsgi import ASGIToWSGI
+ImportError: cannot import name 'ASGIToWSGI' from 'a2wsgi' (/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/lib/python3.10/site-packages/a2wsgi/__init__.py)
+[UID:1568][503615] Child process with pid: 503677 was killed by signal: 15, core dumped: no
+Traceback (most recent call last):
+  File "/home/systema1/privateapps.systematicdefence.tech/server/passenger_wsgi.py", line 22, in <module>
+    from a2wsgi import ASGIToWSGI
+ImportError: cannot import name 'ASGIToWSGI' from 'a2wsgi' (/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/lib/python3.10/site-packages/a2wsgi/__init__.py)
+Traceback (most recent call last):
+  File "/home/systema1/privateapps.systematicdefence.tech/server/passenger_wsgi.py", line 22, in <module>
+    from a2wsgi import ASGIToWSGI
+ImportError: cannot import name 'ASGIToWSGI' from 'a2wsgi' (/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/lib/python3.10/site-packages/a2wsgi/__init__.py)
+[UID:1568][503694] Child process with pid: 503734 was killed by signal: 15, core dumped: no
