@@ -391,3 +391,12 @@ SyntaxError: invalid syntax
                                   ^^^^^^^^^^^
 SyntaxError: invalid syntax
 [UID:1568][198265] Child process with pid: 198421 was killed by signal: 15, core dumped: no
+Traceback (most recent call last):
+  File "/home/systema1/privateapps.systematicdefence.tech/server/passenger_wsgi.py", line 6, in <module>
+    sys.path.insert(0, os.path.dirname(file)) 
+NameError: name 'file' is not defined. Did you mean: 'filter'?
+Traceback (most recent call last):
+  File "/home/systema1/privateapps.systematicdefence.tech/server/passenger_wsgi.py", line 6, in <module>
+    sys.path.insert(0, os.path.dirname(file)) 
+NameError: name 'file' is not defined. Did you mean: 'filter'?
+[UID:1568][458587] Child process with pid: 458614 was killed by signal: 15, core dumped: no
