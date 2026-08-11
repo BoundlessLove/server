@@ -19,6 +19,8 @@ from main import app
 
 #4. Convert ASGI to WSGI for Passenger 
 
-from a2wsgi import ASGIToWSGI application = ASGIToWSGI(app) 
+from a2wsgi import ASGIToWSGI 
+
+application = ASGIToWSGI(app) 
 
  
