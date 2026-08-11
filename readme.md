@@ -70,7 +70,14 @@ from a2wsgi import ASGIToWSGI
 
 application = ASGIToWSGI(app)
 
+### 0.02 App using incorrect virtual environment
 
+Issue:
 
+![Virtual Environment issues- wsgi](./screenshots/wsgi.jpg)
+ 
+Investigation:
+
+hat command output solves the mystery! The package a2wsgi does not export ASGIToWSGI directly from its main module root in this version. Instead, it exposes ASGIMiddleware and WSGIMiddleware.To convert your ASGI FastAPI application into a WSGI application using this package, you need to use ASGIMiddleware instead.
  
  

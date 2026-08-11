@@ -13,6 +13,6 @@ sys.path.insert(0, venv_packages)
 from main import app 
 
 # 4. Convert ASGI to WSGI for Passenger 
-from a2wsgi import ASGIToWSGI 
+from a2wsgi import ASGIMiddleware
 
-application = ASGIToWSGI(app)
+application = ASGIMiddleware(app)
