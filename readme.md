@@ -2,161 +2,211 @@
 
 ## 1.0 Setup
 
+### 1.1 Local
 ~/eclipse-workspace/MicronManagement] └─$ python3 -m venv venv
 
 ~/eclipse-workspace/MicronManagement] └─$ source venv/bin/activate
 
 ~/eclipse-workspace/MicronManagement] └─$ pip install -r requirements.txt
 
-### a. Start server
+#### a. Start server
 
 ~/eclipse-workspace/MicronManagement] └─$ uvicorn main:app --reload --port 8002
 
-### b. Acceess virtual environment remotely (if needed)
 
-server] source /home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/bin/activate && cd /home/systema1/privateapps.systematicdefence.tech/server
-
-#### i. Create a restart file that Passenger looks for
-mkdir -p tmp && touch tmp/restart.txt
-
-#### ii. Kill any stuck background Python workers for your user
-pkill -u systema1 -f python
-
-#### iii. Clear your browser cache and refresh your app URL
-
-
-### b. Test
+#### b. Run
 
 i. Navigate to :
 
-http://127.0.0.1:8000/api/v1/convert-hex
+http://127.0.0.1:8002
 
+
+### 1.2 Fastcomet
+
+To deploy FastAPI on FastComet Shared Hosting, app needs to be adapted because FastComet uses Phusion Passenger (which is built for WSGI apps), while FastAPI is an asynchronous framework (ASGI). [1] The most reliable way to make them work together without process being killed by the server is to use a tool called a2wsgi to wrap your FastAPI app so Passenger can read it. 
+
+FastAPI is built on ASGI (Asynchronous Server Gateway Interface), which inherently conflicts with standard cPanel environments like FastComet's LiteSpeed wrapper (lswsgi). Shared hosting is designed from the ground up for WSGI (Web Server Gateway Interface), which is synchronous. Trying to bridge ASGI to WSGI on these platforms frequently causes the 503 timeouts and process-limit erro. [2, 3, 4] 
+
+Flask is a native WSGI micro-framework [1]. It works beautifully on FastComet out of the box because it matches the exact architecture the server expects. It has a lightweight routing syntax very similar to FastAPI. [5, 6, 7] 
+ 
+
+#### 1.2.1 Exact Folder Structure 
+
+Your project code should live outside of the public_html directory for security. This prevents users from accidentally downloading your raw code files or .env configurations. 
+
+/home/yourusername/ 
+
+```txt
+├── private_apps/            <-- Create this folder manually 
+
+│   └── server/           <-- Your application root directory 
+
+│       ├── main.py          <-- Your main FastAPI file 
+
+│       ├── passenger_wsgi.py <-- The entry point cPanel looks for 
+
+│       └── requirements.txt <-- Your dependencies file 
+
+└── public_html/             <-- FastComet's public folder 
+
+    └── (cPanel creates symlinks or files here automatically) 
+
+ ```
+
+ 
+#### 1.2.2 Files
+
+##### 1.2.2.1 requirements.txt 
+
+Place this in /home/yourusername/private_apps/server/ folder. Do not use a broad pip freeze from Kali. Instead, use these specific packages:
+
+ ```txt
+
+fastapi 
+
+a2wsgi 
+
+uvicorn 
+
+flask 
+
+```
+
+##### 1.2.2.2. main.py 
+
+This is your standard Flask logic.  
+
+```python
+from flask import Flask, jsonify, request
+
+# 1. Initialize the native WSGI application
+app = Flask(__name__)
+
+@app.route("/")
+def read_root():
+    return jsonify({"status": "success", "message": "Hello from Flask on FastComet!"})
+
+@app.route("/items/<int:item_id>")
+def read_item(item_id):
+    # Retrieve the query parameters (equivalent to q: str = None in FastAPI)
+    q = request.args.get('q', None)
+    return jsonify({"item_id": item_id, "q": q})
+
+# 2. Expose the exact object cPanel expects to run the website
+application = app
+```
+ 
+
+##### 1.2.2.3 passenger_wsgi.py 
+
+This is the critical bridge - an adapter.
+
+ ```python
+import imp
+import os
+import sys
+
+
+sys.path.insert(0, os.path.dirname(__file__))
+
+wsgi = imp.load_source('wsgi', 'passenger_wsgi.py')
+application = wsgi.application
+```
+
+ 
+
+### 1.2.3 Steps to Launch in cPanel 1.2.3
+
+#### 1.2.3.1 Upload Files: 
+
+Use the cPanel File Manager or SFTP to upload your files into /home/yourusername/private_apps/server/. 
+
+#### 1.2.3.2 Setup Python App: 
+
+a. Navigate to cPanel ➡️ Setup Python App. 
+
+b. Click Create Application. 
+
+c. Python Version: Choose 3.10 or higher. 
+
+d. Application root: Type private_apps/server. 
+
+e. Application URL: Select the domain or subdomain you want to use. 
+
+f. Application Startup file: type passenger_wsgi.py. 
+
+g. Application Entry point: Type application. 
+
+Click Create.
+
+--Outcome 
+
+To enter virtual environment via terminal, run the commands: 
+
+i. cd /home/systema1/privateapps.systematicdefence.tech/server 
+
+ii. source /home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/bin/activate && 
+
+#### 1.2.3.3 Install Packages: 
+
+i. Scroll down to the Configuration files section inside the Python App menu. 
+
+ii. Type requirements.txt and click Add. 
+
+iii. Click Run Pip Install and select requirements.txt.
+
+#### 1.2.3.4 Restart App: 
+
+Click the Restart button at the top of your Python app configuration page. 
+
+#### 1.2.3.5 Run App
+
+Navigate to https://privateapps.systematicdefence.tech 
+
+### 1.2.4 Acceess virtual environment remotely (if needed)
+
+systema1@s4710 server$  cd /home/systema1/privateapps.systematicdefence.tech/server
+
+systema1@s4710 server$  source /home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/bin/activate
+
+((server:3.10)) [systema1@s4710 server]$ 
+
+### 1.2.5 Hard refreshes
+
+i. Kill any stuck background Python workers for your user
+
+pkill -u systema1 -f python
+
+ii. Tell LiteSpeed to read the fresh files on the next page load, and create a restart file that Passenger looks for:
+
+mkdir -p tmp && touch tmp/restart.txt
+
+iii. Clear browser cache and refresh your app URL
 
 
 ## 2.0 Versions
 
-### 0.01 Various teething issues as below
+### 1.0 Wednesday 12 August 21:00 HOURS
 
-![Teething issues](./screenshots/SyntaxError.jpg)
+Server operational in Production with flask:
 
-Resolved via moving 'application = ASCIToWSGI(app)' to new line.
+![Server Working](./screenshots/ServerWorking.jpg)
 
-### 0.02 App using incorrect virtual environment
+## 3.0 References
 
-Issue:
+[1] [https://blog.stackademic.com](https://blog.stackademic.com/we-migrated-from-flask-to-fastapi-heres-what-actually-changed-a94b8fe6efb7)
 
-![Virtual Environment issues](./screenshots/VirtualEnvironmentBug.jpg)
- 
-Investigation:
- 
-![Virtual Environment check](./screenshots/VirtualEnvironmentCheck.jpg)
+[2] [https://ceb10n.medium.com](https://ceb10n.medium.com/understanding-fastapi-the-basics-14221665f742)
 
-Resolution:
+[3] [https://pinggy.io](https://pinggy.io/blog/host_a_fastapi_app_without_a_server/)
 
-The console shows that a2wsgi version 1.10.1 is successfully installed in your virtual environment. That version definitely contains ASGIToWSGI, meaning the package itself is fine.
-The problem is that  terminal prompt shows virtual environment activated after the error occurred. Passenger (cPanel's application manager) is likely running script using the server's global system Python instead of server's specific virtual environment. When it does that, it falls back to a different or broken version of a2wsgi hosted globally.
-So, need to explicitly tell passenger_wsgi.py to use your virtual environment's packages before it tries to import anything.
+[4] [https://medium.com](https://medium.com/@prajjaldhar41/fastapi-is-trending-but-do-developers-even-know-what-rest-actually-is-2d6d46cf2c93)
 
-The Fix:
+[5] [https://medium.com](https://medium.com/@tbettyem/migrate-from-flask-to-fastapi-smoothly-ccb2a24250ac)
 
-Open your passenger_wsgi.py file and update Section 2. The standard environment variable check can sometimes fail under Passenger, so should explicitly add the hardcoded path from your terminal screen to sys.path.
+[6] [https://github.com](https://github.com/fastapi/fastapi/issues/1663)
 
-Updated code
+[7] [https://medium.com](https://medium.com/techtrends-digest/introduction-to-fastapi-4680da0a3554)
 
-import sys
-
-import os 
-
-venv_packages = '/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/lib/python3.10/site-packages'
-
-sys.path.insert(0, os.path.dirname(__file__)) 
-
-venv_packages = '/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/lib/python3.10/site-packages'
- 
-sys.path.insert(0, venv_packages)
-
-from main import app 
-
-from a2wsgi import ASGIToWSGI 
-
-application = ASGIToWSGI(app)
-
-### 0.03 App using incorrect virtual environment
-
-Issue:
-
-![Virtual Environment issues- wsgi](./screenshots/wsgi.jpg)
- 
-Investigation:
-
-That command output solves the mystery! The package a2wsgi does not export ASGIToWSGI directly from its main module root in this version. Instead, it exposes ASGIMiddleware and WSGIMiddleware.To convert your ASGI FastAPI application into a WSGI application using this package, you need to use ASGIMiddleware instead.
- 
-### 0.04 App 
-
-#### Issue:
-
-[systema1@s4710 server]$ python passenger_wsgi.py
-Traceback (most recent call last):
-  File "/home/systema1/privateapps.systematicdefence.tech/server/passenger_wsgi.py", line 13, in <module>
-    from main import app
-  File "/home/systema1/privateapps.systematicdefence.tech/server/main.py", line 1, in <module>
-    from fastapi import FastAPI
-  File "/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/lib/python3.10/site-packages/fastapi/__init__.py", line 7, in <module>
-    from .applications import FastAPI as FastAPI
-  File "/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/lib/python3.10/site-packages/fastapi/applications.py", line 7, in <module>
-    from fastapi import routing
-  File "/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/lib/python3.10/site-packages/fastapi/routing.py", line 42, in <module>
-    import anyio
-  File "/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/lib/python3.10/site-packages/anyio/__init__.py", line 29, in <module>
-    from ._core._fileio import AsyncFile as AsyncFile
-  File "/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/lib/python3.10/site-packages/anyio/_core/_fileio.py", line 29, in <module>
-    from ..abc import AsyncResource
-  File "/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/lib/python3.10/site-packages/anyio/abc/__init__.py", line 3, in <module>
-    from ._eventloop import AsyncBackend as AsyncBackend
-  File "/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/lib/python3.10/site-packages/anyio/abc/_eventloop.py", line 11, in <module>
-    from typing import (
-ImportError: cannot import name 'TypeAlias' from 'typing' (/usr/lib64/python3.9/typing.py)
-[systema1@s4710 server]$
- 
-#### Resolution:
-
-The traceback exposes exactly why your app is failing: 
-
-- your server is executing the script using Python 3.9 (/usr/lib64/python3.9/typing.py), but your FastAPI packages require Python 3.10.
-
-Because TypeAlias was only introduced in Python 3.10, the older Python 3.9 interpreter crashes when trying to load your modern packages. Simply changing sys.path isn't enough because the core Python language itself is the wrong version.The FixYou need to force Phusion Passenger to stop using the system's default Python 3.9 and completely restart your script using your virtual environment's Python 3.10 binary.
-
-1. Open your passenger_wsgi.py file and place an interpreter check right at the very top (before any other imports).
-
-2. In your terminal, clear any stuck tasks again:
-   
-pkill -u systema1 -f python
-   
-3. Refresh your website in your browser.
-
-The os.execl command will instantly hijack the process and force the entire environment to swap over to Python 3.10, resolving the ImportError completely.
-
-### 0.05
-
-![Restart failed](./screenshots/RestartFailed.jpg)
- 
-#### Resolution
-
-The generic "Error" popup in cPanel when hitting the Restart button happens because LiteSpeed or Passenger is currently locking the application files in the background, or a background process is deadlocked from our previous attempts.
-Since cPanel's graphical interface is failing to reset the lock, we can easily bypass it and force a manual restart directly from your terminal.
-##### The Fix: Force a Hard Manual Restart
-Run these three commands in your SSH terminal to forcefully reset the server state and bypass cPanel's interface lock:
-
-##### 1. Kill any stubborn background Python processes hanging onto files
-pkill -u systema1 -f python
-##### 2. Tell the application runner to pick up the changes on the next page load
-mkdir -p tmp && touch tmp/restart.txt
-##### 3. Clear LiteSpeed's specific worker socket cache for your app
-rm -rf tmp/passenger.*
-
-##### Next Step
-Once you execute those commands in the terminal, do not press Restart in cPanel again.
-Instead, go straight to your web browser and open website link: privateapps.systematicdefence.tech. The tmp/restart.txt file will automatically force LiteSpeed to spawn a brand new process using your clean code.
-Once you run those terminal commands and refresh your website URL, let me know:
-
+[8] [https://kinsta.com](https://kinsta.com/blog/http-error-503/)
 
