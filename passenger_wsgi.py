@@ -11,7 +11,7 @@ sys.path.insert(0, venv_packages)
 # 3. Import your FastAPI app object from main.py 
 from main import app 
 
-# 4. Convert ASGI to WSGI using the correct ASGIMiddleware from a2wsgi
-from a2wsgi import ASGIMiddleware
+# 4. Use Uvicorn's native WSGI wrapper which handles shared hosting loops smoothly
+from uvicorn.middleware.wsgi import WSGIMiddleware
 
-application = ASGIMiddleware(app)
+application = WSGIMiddleware(app)
