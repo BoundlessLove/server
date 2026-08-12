@@ -202,3 +202,9 @@ Traceback (most recent call last):
     from asgiref.wsgi import AsgiToWsgi
 ImportError: cannot import name 'AsgiToWsgi' from 'asgiref.wsgi' (/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/lib/python3.10/site-packages/asgiref/wsgi.py)
 [UID:1568][848168] Child process with pid: 848310 was killed by signal: 15, core dumped: no
+[UID:1568][1023664] Child process with pid: 1023751 was killed by signal: 15, core dumped: no
+[UID:1568][1030770] Child process with pid: 1031155 was killed by signal: 15, core dumped: no
+[UID:1568][1072297] Child process with pid: 1072421 was killed by signal: 15, core dumped: no
+[UID:1568][1072297] Child process with pid: 1074278 was killed by signal: 15, core dumped: no
+[UID:1568][1080274] Child process with pid: 1080670 was killed by signal: 15, core dumped: no
+[UID:1568][1080274] Child process with pid: 1080669 was killed by signal: 15, core dumped: no
