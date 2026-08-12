@@ -11,7 +11,7 @@ sys.path.insert(0, venv_packages)
 # 3. Import your FastAPI app object from main.py 
 from main import app 
 
-# 4. Convert ASGI to WSGI using the lightweight asgiref adapter
-from asgiref.wsgi import WsgiToAsgi
+# 4. Convert ASGI to WSGI using the correct AsgiToWsgi class from asgiref
+from asgiref.wsgi import AsgiToWsgi
 
-application = WsgiToAsgi(app)
+application = AsgiToWsgi(app)
