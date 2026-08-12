@@ -136,3 +136,27 @@ pkill -u systema1 -f python
 
 The os.execl command will instantly hijack the process and force the entire environment to swap over to Python 3.10, resolving the ImportError completely.
 
+### 0.05
+
+![Restart failed](./screenshots/RestartFailed.jpg)
+ 
+#### Resolution
+
+The generic "Error" popup in cPanel when hitting the Restart button happens because LiteSpeed or Passenger is currently locking the application files in the background, or a background process is deadlocked from our previous attempts.
+Since cPanel's graphical interface is failing to reset the lock, we can easily bypass it and force a manual restart directly from your terminal.
+##### The Fix: Force a Hard Manual Restart
+Run these three commands in your SSH terminal to forcefully reset the server state and bypass cPanel's interface lock:
+
+##### 1. Kill any stubborn background Python processes hanging onto files
+pkill -u systema1 -f python
+##### 2. Tell the application runner to pick up the changes on the next page load
+mkdir -p tmp && touch tmp/restart.txt
+##### 3. Clear LiteSpeed's specific worker socket cache for your app
+rm -rf tmp/passenger.*
+
+##### Next Step
+Once you execute those commands in the terminal, do not press Restart in cPanel again.
+Instead, go straight to your web browser and open website link: privateapps.systematicdefence.tech. The tmp/restart.txt file will automatically force LiteSpeed to spawn a brand new process using your clean code.
+Once you run those terminal commands and refresh your website URL, let me know:
+
+
