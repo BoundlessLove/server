@@ -1,17 +1,9 @@
-import sys
+import imp
 import os
+import sys
 
-# 1. Force Python to look in your current folder for code 
-sys.path.insert(0, os.path.dirname(__file__)) 
 
-# 2. Force Passenger/LiteSpeed to use your exact virtual environment packages
-venv_packages = '/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/lib/python3.10/site-packages'
-sys.path.insert(0, venv_packages)
+sys.path.insert(0, os.path.dirname(__file__))
 
-# 3. Import your FastAPI app object from main.py 
-from main import app 
-
-# 4. Convert ASGI to WSGI using ASGIMiddleware from a2wsgi
-from a2wsgi import ASGIMiddleware
-
-application = ASGIMiddleware(app)
+wsgi = imp.load_source('wsgi', 'passenger_wsgi.py')
+application = wsgi.application
