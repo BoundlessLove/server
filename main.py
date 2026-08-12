@@ -1,16 +1,17 @@
-from fastapi import FastAPI
-from a2wsgi import ASGIMiddleware
+from flask import Flask, jsonify, request
 
-app = FastAPI()
+# 1. Initialize the native WSGI application
+app = Flask(__name__)
 
-@app.get("/")
+@app.route("/")
 def read_root():
-    return {"status": "success", "message": "Hello from FastAPI on FastComet!"}
+    return jsonify({"status": "success", "message": "Hello from Flask on FastComet!"})
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: str = None):
-    return {"item_id": item_id, "q": q}
+@app.route("/items/<int:item_id>")
+def read_item(item_id):
+    # Retrieve the query parameters (equivalent to q: str = None in FastAPI)
+    q = request.args.get('q', None)
+    return jsonify({"item_id": item_id, "q": q})
 
-# ====== ADD THIS AT THE VERY BOTTOM OF YOUR MAIN.PY ======
-# This creates the exact WSGI wrapper cPanel is looking for!
-application = ASGIMiddleware(app)
+# 2. Expose the exact object cPanel expects to run the website
+application = app
