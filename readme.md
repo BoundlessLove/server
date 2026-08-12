@@ -195,11 +195,18 @@ Server operational in Production with flask:
 ## 3.0 References
 
 [1] [https://blog.stackademic.com](https://blog.stackademic.com/we-migrated-from-flask-to-fastapi-heres-what-actually-changed-a94b8fe6efb7)
+
 [2] [https://ceb10n.medium.com](https://ceb10n.medium.com/understanding-fastapi-the-basics-14221665f742)
+
 [3] [https://pinggy.io](https://pinggy.io/blog/host_a_fastapi_app_without_a_server/)
+
 [4] [https://medium.com](https://medium.com/@prajjaldhar41/fastapi-is-trending-but-do-developers-even-know-what-rest-actually-is-2d6d46cf2c93)
+
 [5] [https://medium.com](https://medium.com/@tbettyem/migrate-from-flask-to-fastapi-smoothly-ccb2a24250ac)
+
 [6] [https://github.com](https://github.com/fastapi/fastapi/issues/1663)
+
 [7] [https://medium.com](https://medium.com/techtrends-digest/introduction-to-fastapi-4680da0a3554)
+
 [8] [https://kinsta.com](https://kinsta.com/blog/http-error-503/)
 
