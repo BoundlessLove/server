@@ -25,3 +25,12 @@ Traceback (most recent call last):
     from a2wsgi import ASGIToWSGI
 ImportError: cannot import name 'ASGIToWSGI' from 'a2wsgi' (/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/lib/python3.10/site-packages/a2wsgi/__init__.py)
 [UID:1568][655999] Child process with pid: 656022 was killed by signal: 15, core dumped: no
+[UID:1568][721309] Child process with pid: 721890 was killed by signal: 15, core dumped: no
+[UID:1568][1649149] Child process with pid: 1649194 was killed by signal: 15, core dumped: no
+[UID:1568][1650090] Child process with pid: 1650649 was killed by signal: 15, core dumped: no
+[UID:1568][1659154] Child process with pid: 1659451 was killed by signal: 15, core dumped: no
+[UID:1568][1752742] Child process with pid: 1753346 was killed by signal: 15, core dumped: no
+[UID:1568][1767466] Child process with pid: 1767520 was killed by signal: 15, core dumped: no
+[UID:1568][1767466] Child process with pid: 1769611 was killed by signal: 15, core dumped: no
+[UID:1568][1767466] Child process with pid: 1770301 was killed by signal: 15, core dumped: no
+[UID:1568][1772880] Child process with pid: 1773487 was killed by signal: 15, core dumped: no
