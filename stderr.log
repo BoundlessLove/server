@@ -113,3 +113,8 @@ ImportError: cannot import name 'ASGIToWSGI' from 'a2wsgi' (/home/systema1/virtu
 [UID:1568][2158245] Child process with pid: 2158693 was killed by signal: 15, core dumped: no
 [UID:1568][2209812] Child process with pid: 2209842 was killed by signal: 15, core dumped: no
 [UID:1568][2210533] Child process with pid: 2211131 was killed by signal: 15, core dumped: no
+/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/bin/python3.10_bin: can't open file '/home/systema1/privateapps.systematicdefence.tech/server/lswsgi': [Errno 2] No such file or directory
+/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/bin/python3.10_bin: can't open file '/home/systema1/privateapps.systematicdefence.tech/server/lswsgi': [Errno 2] No such file or directory
+/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/bin/python3.10_bin: can't open file '/home/systema1/privateapps.systematicdefence.tech/server/lswsgi': [Errno 2] No such file or directory
+/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/bin/python3.10_bin: can't open file '/home/systema1/privateapps.systematicdefence.tech/server/lswsgi': [Errno 2] No such file or directory
+/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/bin/python3.10_bin: can't open file '/home/systema1/privateapps.systematicdefence.tech/server/lswsgi': [Errno 2] No such file or directory
