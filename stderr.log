@@ -208,3 +208,7 @@ ImportError: cannot import name 'AsgiToWsgi' from 'asgiref.wsgi' (/home/systema1
 [UID:1568][1072297] Child process with pid: 1074278 was killed by signal: 15, core dumped: no
 [UID:1568][1080274] Child process with pid: 1080670 was killed by signal: 15, core dumped: no
 [UID:1568][1080274] Child process with pid: 1080669 was killed by signal: 15, core dumped: no
+[ERROR] [UID:1568][1124112] wsgiAppHandler pApp->start_response() return NULL.
+TypeError: WSGIMiddleware.__call__() missing 1 required positional argument: 'send'
+[ERROR] [UID:1568][1124112] wsgiAppHandler pApp->start_response() return NULL.
+TypeError: WSGIMiddleware.__call__() missing 1 required positional argument: 'send'
