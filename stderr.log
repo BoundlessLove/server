@@ -127,3 +127,78 @@ TypeError: WsgiToAsgi.__call__() missing 1 required positional argument: 'send'
 TypeError: WsgiToAsgi.__call__() missing 1 required positional argument: 'send'
 [ERROR] [UID:1568][2350387] wsgiAppHandler pApp->start_response() return NULL.
 TypeError: WsgiToAsgi.__call__() missing 1 required positional argument: 'send'
+Traceback (most recent call last):
+  File "/home/systema1/privateapps.systematicdefence.tech/server/passenger_wsgi.py", line 15, in <module>
+    from asgiref.wsgi import AsgiToWsgi
+ImportError: cannot import name 'AsgiToWsgi' from 'asgiref.wsgi' (/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/lib/python3.10/site-packages/asgiref/wsgi.py)
+Traceback (most recent call last):
+  File "/home/systema1/privateapps.systematicdefence.tech/server/passenger_wsgi.py", line 15, in <module>
+    from asgiref.wsgi import AsgiToWsgi
+ImportError: cannot import name 'AsgiToWsgi' from 'asgiref.wsgi' (/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/lib/python3.10/site-packages/asgiref/wsgi.py)
+Traceback (most recent call last):
+  File "/home/systema1/privateapps.systematicdefence.tech/server/passenger_wsgi.py", line 15, in <module>
+    from asgiref.wsgi import AsgiToWsgi
+ImportError: cannot import name 'AsgiToWsgi' from 'asgiref.wsgi' (/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/lib/python3.10/site-packages/asgiref/wsgi.py)
+Traceback (most recent call last):
+  File "/home/systema1/privateapps.systematicdefence.tech/server/passenger_wsgi.py", line 15, in <module>
+    from asgiref.wsgi import AsgiToWsgi
+ImportError: cannot import name 'AsgiToWsgi' from 'asgiref.wsgi' (/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/lib/python3.10/site-packages/asgiref/wsgi.py)
+Traceback (most recent call last):
+  File "/home/systema1/privateapps.systematicdefence.tech/server/passenger_wsgi.py", line 15, in <module>
+    from asgiref.wsgi import AsgiToWsgi
+ImportError: cannot import name 'AsgiToWsgi' from 'asgiref.wsgi' (/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/lib/python3.10/site-packages/asgiref/wsgi.py)
+Traceback (most recent call last):
+  File "/home/systema1/privateapps.systematicdefence.tech/server/passenger_wsgi.py", line 15, in <module>
+    from asgiref.wsgi import AsgiToWsgi
+ImportError: cannot import name 'AsgiToWsgi' from 'asgiref.wsgi' (/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/lib/python3.10/site-packages/asgiref/wsgi.py)
+[UID:1568][3216459] Child process with pid: 3216572 was killed by signal: 15, core dumped: no
+Traceback (most recent call last):
+  File "/home/systema1/privateapps.systematicdefence.tech/server/passenger_wsgi.py", line 15, in <module>
+    from asgiref.wsgi import AsgiToWsgi
+ImportError: cannot import name 'AsgiToWsgi' from 'asgiref.wsgi' (/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/lib/python3.10/site-packages/asgiref/wsgi.py)
+[UID:1568][3216393] Child process with pid: 3216576 was killed by signal: 15, core dumped: no
+[UID:1568][3216459] Child process with pid: 3216571 was killed by signal: 15, core dumped: no
+[UID:1568][3216393] Child process with pid: 3216573 was killed by signal: 15, core dumped: no
+[UID:1568][3216393] Child process with pid: 3216577 was killed by signal: 15, core dumped: no
+Traceback (most recent call last):
+  File "/home/systema1/privateapps.systematicdefence.tech/server/passenger_wsgi.py", line 15, in <module>
+    from asgiref.wsgi import AsgiToWsgi
+ImportError: cannot import name 'AsgiToWsgi' from 'asgiref.wsgi' (/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/lib/python3.10/site-packages/asgiref/wsgi.py)
+Traceback (most recent call last):
+  File "/home/systema1/privateapps.systematicdefence.tech/server/passenger_wsgi.py", line 15, in <module>
+    from asgiref.wsgi import AsgiToWsgi
+ImportError: cannot import name 'AsgiToWsgi' from 'asgiref.wsgi' (/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/lib/python3.10/site-packages/asgiref/wsgi.py)
+Traceback (most recent call last):
+  File "/home/systema1/privateapps.systematicdefence.tech/server/passenger_wsgi.py", line 15, in <module>
+    from asgiref.wsgi import AsgiToWsgi
+ImportError: cannot import name 'AsgiToWsgi' from 'asgiref.wsgi' (/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/lib/python3.10/site-packages/asgiref/wsgi.py)
+Traceback (most recent call last):
+  File "/home/systema1/privateapps.systematicdefence.tech/server/passenger_wsgi.py", line 15, in <module>
+    from asgiref.wsgi import AsgiToWsgi
+ImportError: cannot import name 'AsgiToWsgi' from 'asgiref.wsgi' (/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/lib/python3.10/site-packages/asgiref/wsgi.py)
+[UID:1568][3216665] Child process with pid: 3216781 was killed by signal: 15, core dumped: no
+[UID:1568][3216665] Child process with pid: 3216780 was killed by signal: 15, core dumped: no
+[UID:1568][3216665] Child process with pid: 3216782 was killed by signal: 15, core dumped: no
+Traceback (most recent call last):
+  File "/home/systema1/privateapps.systematicdefence.tech/server/passenger_wsgi.py", line 15, in <module>
+    from asgiref.wsgi import AsgiToWsgi
+ImportError: cannot import name 'AsgiToWsgi' from 'asgiref.wsgi' (/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/lib/python3.10/site-packages/asgiref/wsgi.py)
+Traceback (most recent call last):
+  File "/home/systema1/privateapps.systematicdefence.tech/server/passenger_wsgi.py", line 15, in <module>
+    from asgiref.wsgi import AsgiToWsgi
+ImportError: cannot import name 'AsgiToWsgi' from 'asgiref.wsgi' (/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/lib/python3.10/site-packages/asgiref/wsgi.py)
+[UID:1568][414465] Child process with pid: 414652 was killed by signal: 15, core dumped: no
+Traceback (most recent call last):
+  File "/home/systema1/privateapps.systematicdefence.tech/server/passenger_wsgi.py", line 15, in <module>
+    from asgiref.wsgi import AsgiToWsgi
+ImportError: cannot import name 'AsgiToWsgi' from 'asgiref.wsgi' (/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/lib/python3.10/site-packages/asgiref/wsgi.py)
+Traceback (most recent call last):
+  File "/home/systema1/privateapps.systematicdefence.tech/server/passenger_wsgi.py", line 15, in <module>
+    from asgiref.wsgi import AsgiToWsgi
+ImportError: cannot import name 'AsgiToWsgi' from 'asgiref.wsgi' (/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/lib/python3.10/site-packages/asgiref/wsgi.py)
+[UID:1568][848168] Child process with pid: 848285 was killed by signal: 15, core dumped: no
+Traceback (most recent call last):
+  File "/home/systema1/privateapps.systematicdefence.tech/server/passenger_wsgi.py", line 15, in <module>
+    from asgiref.wsgi import AsgiToWsgi
+ImportError: cannot import name 'AsgiToWsgi' from 'asgiref.wsgi' (/home/systema1/virtualenv/privateapps.systematicdefence.tech/server/3.10/lib/python3.10/site-packages/asgiref/wsgi.py)
+[UID:1568][848168] Child process with pid: 848310 was killed by signal: 15, core dumped: no
