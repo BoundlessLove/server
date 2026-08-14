@@ -99,7 +99,7 @@ application = app
 
 ##### 1.2.2.3 passenger_wsgi.py 
 
-This is the critical bridge - an adapter.
+This is the critical bridge - an adapter. It tells cPanel's Phusion Passenger to load main.py
 
  ```python
 import os
