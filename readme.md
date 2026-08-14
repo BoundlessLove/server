@@ -102,15 +102,16 @@ application = app
 This is the critical bridge - an adapter.
 
  ```python
-import imp
 import os
 import sys
 
-
 sys.path.insert(0, os.path.dirname(__file__))
 
-wsgi = imp.load_source('wsgi', 'passenger_wsgi.py')
-application = wsgi.application
+# Import main.py instead of loading passenger_wsgi.py
+import main
+
+application = main.app
+
 ```
 
  
