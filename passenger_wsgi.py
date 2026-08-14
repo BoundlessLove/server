@@ -1,3 +1,4 @@
+
 #
 # Author: Jyotirmay Sarna
 # Date: 14 August 2026
@@ -12,3 +13,4 @@ sys.path.insert(0, os.path.dirname(__file__))
 import main
 
 application = main.app
+
